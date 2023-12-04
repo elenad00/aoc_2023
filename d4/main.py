@@ -1,5 +1,14 @@
+## aoc 2023 - day   ##
+##    by elena d    ##
+
+## imports
+import sys
+import os
+parent_dir = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(parent_dir)
 from aoc_utils import *
 
+# functions
 def get_wins_lines(line):
     winning, card_numbers = line.split(': ')[1].split(' | ')  
     winning = get_list(winning)
@@ -17,7 +26,7 @@ def get_list(input_str):
     inp_list = input_str.replace('  ',' ').split(' ')
     if '' in inp_list: inp_list.remove('')
     return inp_list 
-
+# part one
 def part_one():
     stack_points = 0
     for line in inp_text:
@@ -28,7 +37,7 @@ def part_one():
         stack_points+=(card_points)
         
     print(stack_points) # 25010
-
+# part two
 def part_two():
     inp_text=test_input
     generated_cards = {}
