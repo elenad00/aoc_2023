@@ -34,3 +34,12 @@ INV_INTS_DICT = {
 }
 
 NUMBERS = [k for k in INV_INTS_DICT.keys()]
+
+def get_symbols(input):
+    symbols = []
+    for line in input:
+        for i in line:
+            if i not in INTS and i!='.':
+                if i not in symbols:
+                    symbols.append(i)
+    return symbols
