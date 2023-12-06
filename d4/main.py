@@ -16,55 +16,48 @@ def get_wins_lines(line):
     return winning, card_numbers
 
 def get_match_count(winning, card_numbers):
-    card_points = 0
-    for i in range(len(winning)):
-        if winning[i] in card_numbers:
-            card_points+=1
-    return card_points
+    return len([c for c in winning if c in card_numbers])
 
 def get_list(input_str):
     inp_list = input_str.replace('  ',' ').split(' ')
     if '' in inp_list: inp_list.remove('')
     return inp_list 
+
+def gen_blank_list(x):
+    return [x for g in range(len(inp_text))]
+
+def get_card_points(line):
+    wins,nums = get_wins_lines(line)
+    card_points = get_match_count(wins,nums)
+    return card_points
+
 # part one
 def part_one():
     stack_points = 0
     for line in inp_text:
-        winning, card_numbers = get_wins_lines(line)
-        card_points = get_match_count(winning, card_numbers)
+        card_points = get_card_points(line)
         if card_points!=0:
             card_points=2**(card_points-1)
         stack_points+=(card_points)
-        
-    print(stack_points) # 25010
+    print(stack_points) 
+
 # part two
 def part_two():
-    inp_text=test_input
-    generated_cards = {}
-    card_runs={}
-    for i in range(len(inp_text)):
-        generated_cards[i]=0
-        card_runs[i]=1
-    
-    for l in range(len(inp_text)):
-        winning, card_numbers = get_wins_lines(inp_text[l])
-        card_points = get_match_count(winning, card_numbers)
-        print(card_points)
-        generated_cards[l]=card_points
-    
+    card_runs=gen_blank_list(1)
+    gen_cards=[]
+    for line in inp_text:
+        card_points = get_card_points(line)
+        gen_cards.append(card_points)
     print('---')
-    
-    for line in generated_cards:
-        s=0
-        print(card_runs[line])
-        while s<card_runs[line]<6:
-            for card in range(line, line+generated_cards[line]):
-                card_runs[card]+=1
-            s+=1    
-    
-    #for pile in win_dec: print(pile+1, generated_cards[pile])
-      
-
+    i=0
+    for run in card_runs:
+        for r in range(run):
+            new_cards = gen_cards[i]
+            for c in range(1,(new_cards+1)):
+                card_runs[i+c]+=1
+        i+=1  
+    print(sum(card_runs))
+        
 test_input = [
     'Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53',
     'Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19',
@@ -73,7 +66,9 @@ test_input = [
     'Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36',
     'Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11'
 ]
-inp_text = read_file('input_2.txt')
+inp_text = read_file('input.txt')
+#inp_text=test_input
 
-part_two()
+part_one() # 25010
+part_two() # 9924412
 
