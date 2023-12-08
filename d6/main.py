@@ -16,7 +16,10 @@ def part_one():
 def part_two():
     return
 
-test_input = []
-input = read_file('input.txt')
+#input = read_file('input.txt')
+test_input = ['Time:      7  15   30' ,'Distance:  9  40  200']
+times=test_input[0].split(' ')[-4:]
+distances=test_input[1].split(' ')[-4:]
+
 part_one()
 part_two()
