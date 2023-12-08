@@ -1,4 +1,4 @@
-def read_file(file_name, delim='\n'):
+def read_file(file_name: str, delim='\n')->list:
     f = open(file_name, 'r')
     content = f.read()
     return content.split(delim)
