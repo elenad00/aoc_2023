@@ -32,7 +32,7 @@ def refine(hands, v):
     return nsl
 
 def split_cards():
-    lists = [[],[],[],[],[],[]]
+    lists = [[],[],[],[],[],[],[]]
     hands = input.keys()
     for hand in hands:
         full_hand = hand
@@ -44,12 +44,12 @@ def split_cards():
         elif len(hand) == 4:
             lists[1].append(num_hand)
         elif len(hand) == 1:
-            lists[5].append(num_hand)
+            lists[6].append(num_hand)
         elif len(hand) == 2:
             if 4 in amms:
-                lists[4].append(num_hand)
+                lists[5].append(num_hand)
             elif 3 in amms:
-                lists[3].append(num_hand)
+                lists[4].append(num_hand)
         elif len(hand) == 3:
             if 3 in amms:
                 lists[3].append(num_hand)
