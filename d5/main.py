@@ -42,3 +42,4 @@ input = read_file('input.txt', '\n\n')
 seeds = [int(x) for x in (input[0].split(': ')[1].split(' '))]
 
 part_one() # 261668924
+part_two()

@@ -1,5 +1,5 @@
-## aoc 2023 - day   ##
-##    by elena d    ##
+## aoc 2023 - day    ##
+##     by elena d    ##
 
 ## imports
 import sys
